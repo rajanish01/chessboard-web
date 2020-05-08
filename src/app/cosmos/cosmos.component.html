@@ -1,2 +1,17 @@
 <app-game-controller-panel></app-game-controller-panel>
-<app-game-container></app-game-container>
+
+<mat-grid-list cols="4" rowHeight="95%">
+    <mat-grid-tile
+        [colspan]="1">
+      Scoreboard here
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="2">
+        <app-game-container  style="width: 100%;height: 100%;"></app-game-container>
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="1">
+      Logs here
+    </mat-grid-tile>
+  </mat-grid-list>
+  
