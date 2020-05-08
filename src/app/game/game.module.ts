@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { GameDetailsComponent } from './game-details/game-details.component';
 import { GameControllerPanelComponent } from './game-controller-panel/game-controller-panel.component';
@@ -20,7 +21,8 @@ import { GameContainerComponent } from './game-container/game-container.componen
     CommonModule,
     MatMenuModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatGridListModule
   ],
   exports:[
     GameContainerComponent,

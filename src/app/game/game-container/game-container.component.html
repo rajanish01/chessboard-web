@@ -1,7 +1,34 @@
 <div id="gameBoard" style="width: 40rem;margin-left:15%;margin-top: 5%;"></div>
-<label>Status:</label>
-<div id="status">{{status}}</div>
-<label>FEN:</label>
-<div id="fen">{{game.fen()}}</div>
-<label>PGN:</label>
-<div id="pgn">{{game.pgn()}}</div>
+
+<mat-grid-list cols="3" rowHeight="50px" style="margin-top: 10px;border-style: solid;border-color: steelblue;">
+    <mat-grid-tile
+        [colspan]="1"
+        [style.background]="'lightblue'">
+      Status
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="2"
+        [style.background]="'lightgreen'">
+        {{status}}
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="1"
+        [style.background]="'lightblue'">
+        FEN
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="2"
+        [style.background]="'lightgreen'">
+        {{game.fen()}}
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="1"
+        [style.background]="'lightblue'">
+        PGN
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="2"
+        [style.background]="'lightgreen'">
+        {{game.pgn()}}
+    </mat-grid-tile>
+  </mat-grid-list>
