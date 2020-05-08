@@ -3,16 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GameContainerComponent } from './game-container/game-container.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CosmosComponent } from './cosmos/cosmos.component';
+import { GameModule } from './game/game.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameContainerComponent
+    CosmosComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    GameModule
   ],
   providers: [],
   bootstrap: [AppComponent]

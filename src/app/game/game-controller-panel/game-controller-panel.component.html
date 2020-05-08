@@ -1,0 +1,22 @@
+<div class="menubar" style="width: 100%;padding: 0.5rem;background-color: #3f51b5;">
+    <button mat-flat-button color="primary" [matMenuTriggerFor]="gameMenu">Game</button>
+    <mat-menu #gameMenu="matMenu" yPosition="below">
+        <button mat-menu-item>New</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>Exit</button>
+    </mat-menu>
+
+    <button mat-flat-button color="primary" [matMenuTriggerFor]="viewMenu">View</button>
+    <mat-menu #viewMenu="matMenu" yPosition="below">
+        <button mat-menu-item>FullScreen</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>Windowed</button>
+    </mat-menu>
+
+    <button mat-flat-button color="primary" [matMenuTriggerFor]="helpMenu">Help</button>
+    <mat-menu #helpMenu="matMenu" yPosition="below">
+        <button mat-menu-item>How To Play</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>About Us</button>
+    </mat-menu>
+</div>
