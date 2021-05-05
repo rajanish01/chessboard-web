@@ -10,7 +10,8 @@ import { Move } from './domain/Move';
 })
 export class DataService {
 
-  baseURL: string = "http://localhost:3000/";
+  //baseURL: string = "http://localhost:8080/";
+  baseURL: string = ""
 
   constructor(private httpClient: HttpClient) { }
 
@@ -19,10 +20,10 @@ export class DataService {
   }
 
   public sendPostRequest(move:Move): Observable<any>{
-    const headers = { 'content-type': 'application/json'}  
+    const headers = { 'content-type': 'application/json','Access-Control-Allow-Origin': '*'}  
     const body = JSON.stringify(move);
     console.log(body);
-    return this.httpClient.post(this.baseURL,body,{'headers':headers}).pipe(retry(3),catchError(this.handleError));
+    return this.httpClient.post(this.baseURL + "game/next",body,{'headers':headers}).pipe(retry(3),catchError(this.handleError));
   }
 
   handleError(error: HttpErrorResponse) {
