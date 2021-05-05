@@ -9,6 +9,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 
 import { CosmosComponent } from './cosmos/cosmos.component';
 import { GameModule } from './game/game.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { GameModule } from './game/game.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     GameModule,
-    MatGridListModule
+    MatGridListModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

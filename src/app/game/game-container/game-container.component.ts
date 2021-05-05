@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { Move } from 'src/app/domain/Move';
+import { DataService } from '../../data.service';
 
 declare var ChessBoard: any
 declare var Chess: any
@@ -13,6 +15,8 @@ export class GameContainerComponent implements OnInit {
   board: any
   game: any
   status: any
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.board = ChessBoard('gameBoard', {
@@ -82,5 +86,11 @@ export class GameContainerComponent implements OnInit {
       }
     }
     console.log(this.status)
+    const move  = new Move();
+    move.gameId = "123456";
+    move.fen = this.game.fen();
+    this.dataService.sendPostRequest(move).subscribe((data: any[])=>{
+      console.log(data);
+    })  
   }
 }
