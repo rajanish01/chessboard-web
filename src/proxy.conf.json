@@ -1,5 +1,5 @@
 {
-    "/game/next": {
+    "/chessweb": {
 
            "target": "http://localhost:8080",
 

@@ -10,8 +10,7 @@ import { Move } from './domain/Move';
 })
 export class DataService {
 
-  //baseURL: string = "http://localhost:8080/";
-  baseURL: string = ""
+  baseURL: string = "/chessweb/"
 
   constructor(private httpClient: HttpClient) { }
 
