@@ -29,6 +29,9 @@ export class GameContainerComponent implements OnInit {
       //orientation: 'black',   TO SET ORIENTATION
       position: fen == null ? 'start' : fen,
       draggable: true,
+      moveSpeed: 'slow',
+      snapbackSpeed: 500,
+      snapSpeed: 100,
       onDragStart: this.onDragStart.bind(this),
       onDrop: this.onDrop.bind(this),
       onSnapEnd: this.onSnapEnd.bind(this)
@@ -63,12 +66,12 @@ export class GameContainerComponent implements OnInit {
   // update the board position after the piece snap
   // for castling, en passant, pawn promotion
   onSnapEnd () {
+    this.board.position(this.gameControl.fen())
+    this.updateStatus()
     var turn = this.gameControl.turn() === 'b' ? 'BLACK' : 'WHITE'
     if(this.game.botSide === turn){
       this.getNextMove()
     }
-    this.board.position(this.gameControl.fen())
-    this.updateStatus()
   }
 
   updateStatus () {
@@ -113,7 +116,9 @@ export class GameContainerComponent implements OnInit {
     this.dataService.getNextMove(body).subscribe((data: Game)=>{
       this.game = data
       console.log(this.game);
-      this.createGame(this.game.fen);
+      this.board.position(this.game.fen)
+      this.gameControl.load(this.game.fen)
+      this.updateStatus()
     });
   }
 }
