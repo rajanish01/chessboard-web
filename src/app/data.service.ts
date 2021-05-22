@@ -3,29 +3,33 @@ import { HttpClient,HttpErrorResponse  } from '@angular/common/http';
 
 import {  Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Move } from './domain/Move';
+import { Game } from './domain/Game';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  baseURL: string = "/chessweb/"
+  private baseURL: string = "/chessweb/"
 
   constructor(private httpClient: HttpClient) { }
 
-  public sendGetRequest(): Observable<any>{
-    return this.httpClient.get(this.baseURL).pipe(retry(3),catchError(this.handleError));;
+  public getNewGame(newGameConfig:Game): Observable<Game>{
+    return this.postRequest(this.baseURL + "game",newGameConfig);
   }
 
-  public sendPostRequest(move:Move): Observable<any>{
-    const headers = { 'content-type': 'application/json','Access-Control-Allow-Origin': '*'}  
-    const body = JSON.stringify(move);
+  public getNextMove(game:Game): Observable<any>{
+    return this.postRequest(this.baseURL + "game/next",game);
+  }
+
+  private postRequest(url:string,body:any): Observable<any>{
+    const headers = { 'content-type': 'application/json'}  
+    body = JSON.stringify(body);
     console.log(body);
-    return this.httpClient.post(this.baseURL + "game/next",body,{'headers':headers}).pipe(retry(3),catchError(this.handleError));
+    return this.httpClient.post(url,body,{'headers':headers}).pipe(catchError(this.handleError));   
   }
 
-  handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {
       // Client-side errors
