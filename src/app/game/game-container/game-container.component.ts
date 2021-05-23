@@ -26,7 +26,7 @@ export class GameContainerComponent implements OnInit {
 
   createGame(fen?: string){
     this.board = ChessBoard('gameBoard', {
-      //orientation: 'black',   TO SET ORIENTATION
+      orientation: 'white',  // TO SET ORIENTATION
       position: fen == null ? 'start' : fen,
       draggable: true,
       moveSpeed: 'slow',
@@ -103,10 +103,15 @@ export class GameContainerComponent implements OnInit {
   }
 
   getNewGame(){
-    const body  = new Game("BLACK",true);
+    var botSide = "BLACK"
+    const body  = new Game(botSide,true);
     this.dataService.getNewGame(body).subscribe((data: Game)=>{
       this.game = data
-      console.log(this.game);
+      if(botSide === "WHITE"){
+        this.board.position(this.game.fen)
+        this.gameControl.load(this.game.fen)
+        this.updateStatus()
+      }
     });
   }
 
@@ -115,7 +120,6 @@ export class GameContainerComponent implements OnInit {
     const body  = this.game
     this.dataService.getNextMove(body).subscribe((data: Game)=>{
       this.game = data
-      console.log(this.game);
       this.board.position(this.game.fen)
       this.gameControl.load(this.game.fen)
       this.updateStatus()
